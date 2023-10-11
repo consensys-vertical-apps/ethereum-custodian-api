@@ -1,32 +1,33 @@
 module.exports = {
   pathPrefix: '/api-playground',
-siteMetadata: {
+  siteMetadata: {
     title: 'Ethereum Custodian API',
     description: 'API for Ethereum Custodians',
-    logoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0StI_jeguVNslskUuiqljELX9cAZMq9YIdftuAIfDpTtPCViYV3xiAkTYjKpNvAKHhno&usqp=CAU',
-    primaryColor: '#3f51b5', //material-ui primary color
-    secondaryColor: '#f50057', //material-ui secondary color
+    logoUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0StI_jeguVNslskUuiqljELX9cAZMq9YIdftuAIfDpTtPCViYV3xiAkTYjKpNvAKHhno&usqp=CAU',
+    primaryColor: '#3f51b5', // material-ui primary color
+    secondaryColor: '#f50057', // material-ui secondary color
     author: '',
     menuLinks: [
       {
         name: 'home',
         link: '/',
-        ignoreNextPrev: true
+        ignoreNextPrev: true,
       },
       {
         name: 'API Documentation',
-        link: '/api-documentation'
-      }
+        link: '/api-documentation',
+      },
     ],
     footerLinks: [
       {
         name: 'OpenRPC',
-        link: 'https://open-rpc.org'
-      }
-    ]
+        link: 'https://open-rpc.org',
+      },
+    ],
   },
   plugins: [
-    "@xops.net/gatsby-openrpc-theme",
+    '@xops.net/gatsby-openrpc-theme',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -38,7 +39,6 @@ siteMetadata: {
         display: 'minimal-ui',
         icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
       },
-    }
+    },
   ],
-}
-
+};
