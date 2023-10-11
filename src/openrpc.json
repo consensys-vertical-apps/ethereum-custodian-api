@@ -182,9 +182,11 @@
             },
             {
               "name": "custodianSignExampleMetadata",
-              "chainId": "0x4",
-              "originUrl": "https://www.example.com",
-              "note": "personal_sign message"
+              "value": {
+                "chainId": "0x4",
+                "originUrl": "https://www.example.com",
+                "note": "personal_sign message"
+              }
             }
           ],
           "result": {
@@ -199,24 +201,17 @@
       "summary": "Requests that the custodian perform a signature according to EIP-712",
       "params": [
         {
-          "name": "address",
+          "name": "SignedTypedDataParameters",
           "required": true,
           "schema": {
-            "$ref": "#/components/schemas/address"
+            "$ref": "#/components/schemas/SignedTypedDataParameters"
           }
         },
         {
-          "name": "payload",
+          "name": "SignedTypedDataMetadata",
           "required": true,
           "schema": {
-            "$ref": "#/components/schemas/TypedData"
-          }
-        },
-        {
-          "name": "version",
-          "required": true,
-          "schema": {
-            "$ref": "#/components/schemas/EIP712EncodingVersion"
+            "$ref": "#/components/schemas/SignedTypedDataMetadata"
           }
         }
       ],
@@ -233,78 +228,82 @@
           "params": [
             {
               "name": "custodianSignTypedDataExampleAddress",
-              "value": "0xb2c77973279baaaf48c295145802695631d50c01"
-            },
-            {
-              "name": "custodianSignTypedDataExamplePayload",
               "value": {
-                "types": {
-                  "EIP712Domain": [
-                    {
-                      "name": "name",
-                      "type": "string"
-                    },
-                    {
-                      "name": "version",
-                      "type": "string"
-                    },
-                    {
-                      "name": "chainId",
-                      "type": "uint256"
-                    },
-                    {
-                      "name": "verifyingContract",
-                      "type": "address"
-                    }
-                  ],
-                  "Person": [
-                    {
-                      "name": "name",
-                      "type": "string"
-                    },
-                    {
-                      "name": "wallet",
-                      "type": "address"
-                    }
-                  ],
-                  "Mail": [
-                    {
-                      "name": "from",
-                      "type": "Person"
-                    },
-                    {
-                      "name": "to",
-                      "type": "Person"
-                    },
-                    {
-                      "name": "contents",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "primaryType": "Mail",
-                "domain": {
-                  "name": "Ether Mail",
-                  "version": "1",
-                  "chainId": 1,
-                  "verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC"
-                },
-                "message": {
-                  "from": {
-                    "name": "Cow",
-                    "wallet": "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826"
+                "address": "0xb2c77973279baaaf48c295145802695631d50c01",
+                "payload": {
+                  "types": {
+                    "EIP712Domain": [
+                      {
+                        "name": "name",
+                        "type": "string"
+                      },
+                      {
+                        "name": "version",
+                        "type": "string"
+                      },
+                      {
+                        "name": "chainId",
+                        "type": "uint256"
+                      },
+                      {
+                        "name": "verifyingContract",
+                        "type": "address"
+                      }
+                    ],
+                    "Person": [
+                      {
+                        "name": "name",
+                        "type": "string"
+                      },
+                      {
+                        "name": "wallet",
+                        "type": "address"
+                      }
+                    ],
+                    "Mail": [
+                      {
+                        "name": "from",
+                        "type": "Person"
+                      },
+                      {
+                        "name": "to",
+                        "type": "Person"
+                      },
+                      {
+                        "name": "contents",
+                        "type": "string"
+                      }
+                    ]
                   },
-                  "to": {
-                    "name": "Bob",
-                    "wallet": "0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB"
+                  "primaryType": "Mail",
+                  "domain": {
+                    "name": "Ether Mail",
+                    "version": "1",
+                    "chainId": 1,
+                    "verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC"
                   },
-                  "contents": "Hello, Bob!"
-                }
+                  "message": {
+                    "from": {
+                      "name": "Cow",
+                      "wallet": "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826"
+                    },
+                    "to": {
+                      "name": "Bob",
+                      "wallet": "0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB"
+                    },
+                    "contents": "Hello, Bob!"
+                  }
+                },
+                "version": "v4"
               }
             },
             {
-              "name": "custodianSignTypedDataExampleEncodingVersion",
-              "value": "v4"
+              "name": "custodianSignTypedDataExampleMetadata",
+              "value": {
+                "chainId": "0x4",
+                "originUrl": "https://www.example.com",
+                "note": "Signed typed data"
+              }
             }
           ],
           "result": {
@@ -568,6 +567,54 @@
       },
       "SignedMessageMetadata": {
         "title": "Signed Message Metadata",
+        "type": "object",
+        "allOf": [
+          {
+            "required": ["chainId", "originUrl"],
+            "properties": {
+              "chainId": {
+                "title": "Chain ID",
+                "$ref": "#/components/schemas/uint"
+              },
+              "originUrl": {
+                "title": "Origin URL",
+                "description": "The web page/dapp where the transaction originated",
+                "$ref": "#/components/schemas/uri"
+              },
+              "note": {
+                "title": "Note",
+                "description": "A note to be attached to the transaction which can be specified by the user",
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "SignedTypedDataParameters": {
+        "title": "Signed Typed Data object",
+        "type": "object",
+        "allOf": [
+          {
+            "required": ["address", "payload", "version"],
+            "properties": {
+              "address": {
+                "title": "From address",
+                "$ref": "#/components/schemas/address"
+              },
+              "payload": {
+                "title": "Message payload",
+                "$ref": "#/components/schemas/bytes"
+              },
+              "version": {
+                "title": "Message payload",
+                "$ref": "#/components/schemas/EIP712EncodingVersion"
+              }
+            }
+          }
+        ]
+      },
+      "SignedTypedDataMetadata": {
+        "title": "Signed Typed Data Metadata",
         "type": "object",
         "allOf": [
           {
