@@ -3,7 +3,7 @@ module.exports = {
 siteMetadata: {
     title: 'Ethereum Custodian API',
     description: 'API for Ethereum Custodians',
-    logoUrl: 'https://raw.githubusercontent.com/open-rpc/design/master/icons/open-rpc-logo-noText/open-rpc-logo-noText%20(PNG)/256x256.png',
+    logoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0StI_jeguVNslskUuiqljELX9cAZMq9YIdftuAIfDpTtPCViYV3xiAkTYjKpNvAKHhno&usqp=CAU',
     primaryColor: '#3f51b5', //material-ui primary color
     secondaryColor: '#f50057', //material-ui secondary color
     author: '',

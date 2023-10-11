@@ -497,40 +497,40 @@
       ]
     },
     {
-      "name": "custodian_getTransactionLink",
-      "summary": "Returns metadata about a transaction which can be used to link users somewhere they can affect its lifecycle",
+      "name": "custodian_getSignedMessageLink",
+      "summary": "Returns metadata about a signed message which can be used to link users somewhere they can affect its lifecycle",
       "params": [
         {
-          "name": "Transaction ID",
+          "name": "Signature ID",
           "required": true,
           "schema": {
-            "title": "Transaction ID",
+            "title": "Signature ID",
             "type": "string"
           }
         }
       ],
       "result": {
-        "name": "TransactionLink",
+        "name": "SignatureLink",
         "schema": {
-          "$ref": "#/components/schemas/TransactionLink"
+          "$ref": "#/components/schemas/SignatureLink"
         }
       },
       "examples": [
         {
-          "name": "custodianGetTransactionLinkExample",
+          "name": "custodianGetSignedMessageLinkExample",
           "params": [
             {
-              "name": "custodianGetTransactionLinkExampleeParam",
+              "name": "custodianGetSignedMessageLinkExampleeParam",
               "value": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
             }
           ],
           "result": {
-            "name": "custodianGetTransactionLinkExampleResult",
+            "name": "custodianGetSignedMessageLinkExampleResult",
             "description": "",
             "value": {
-              "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
-              "url": "https://example.com/transaction/ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
-              "text": "Approve your transaction in the custodian interface",
+              "signatureId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+              "url": "https://example.com/signature/ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+              "text": "Approve your signature in the custodian interface",
               "action": "Approve",
               "ethereum": {
                 "accounts": ["0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826"],
@@ -840,20 +840,20 @@
           }
         ]
       },
-      "TransactionLink": {
-        "name": "transactionLink",
-        "description": "Metadata about a transaction that can be used to link to it on the web",
+      "SignatureLink": {
+        "name": "SignatureLink",
+        "description": "Metadata about a signed message that can be used to link to it on the web",
         "type": "object",
         "properties": {
-          "transactionId": {
-            "title": "Transaction ID",
-            "description": "The transaction ID",
+          "signatureId": {
+            "title": "Signature ID",
+            "description": "The signature ID",
             "type": "string"
           },
           "url": {
             "title": "URL",
             "type": "string",
-            "description": "The URL where the transaction can be found"
+            "description": "The URL where the signature can be found"
           },
           "text": {
             "title": "Text",
