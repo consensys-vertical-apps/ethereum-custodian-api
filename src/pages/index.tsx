@@ -12,7 +12,7 @@ const MyApp: React.FC = () => {
         <br />
         <Typography variant="h1">MMI JSON-RPC</Typography>
         <Typography gutterBottom style={{ paddingTop: "50px", paddingBottom: "20px" }} variant="inherit">
-          This API lets you interact with MMI via JSON-RPC
+          The JSON-RPC API for Ethereum Custodians
         </Typography>
         <br />
         <Link
@@ -21,7 +21,7 @@ const MyApp: React.FC = () => {
               {props.children}
             </GatsbyLink>
           )}>
-          <Button variant="contained" color="primary">API Reference Documentation</Button>
+          <Button variant="contained" color="primary">API Playground</Button>
         </Link>
         <br />
         <br />
