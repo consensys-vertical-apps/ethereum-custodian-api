@@ -2,7 +2,7 @@
   "openrpc": "1.2.4",
   "info": {
     "title": "Ethereum Custodian API",
-    "version": "0.0.2",
+    "version": "3.0.0",
     "description": "API for Ethereum Custodians"
   },
   "methods": [
