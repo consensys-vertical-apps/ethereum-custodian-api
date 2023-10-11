@@ -19,7 +19,9 @@ jobs:
         with:
           node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
       - run: yarn setup
+      - run: yarn build
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           folder: public/
+          branch: gh-pages

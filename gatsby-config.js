@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: '/api-playground',
+  pathPrefix: '/ethereum-custodian-api/',
   siteMetadata: {
     title: 'Ethereum Custodian API',
     description: 'API for Ethereum Custodians',
