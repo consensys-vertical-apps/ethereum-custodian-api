@@ -501,18 +501,18 @@
       "summary": "Returns metadata about a signed message which can be used to link users somewhere they can affect its lifecycle",
       "params": [
         {
-          "name": "Signature ID",
+          "name": "SignedMessage ID",
           "required": true,
           "schema": {
-            "title": "Signature ID",
+            "title": "SignedMessage ID",
             "type": "string"
           }
         }
       ],
       "result": {
-        "name": "SignatureLink",
+        "name": "SignedMessageLink",
         "schema": {
-          "$ref": "#/components/schemas/SignatureLink"
+          "$ref": "#/components/schemas/SignedMessageLink"
         }
       },
       "examples": [
@@ -840,14 +840,14 @@
           }
         ]
       },
-      "SignatureLink": {
-        "name": "SignatureLink",
+      "SignedMessageLink": {
+        "name": "SignedMessageLink",
         "description": "Metadata about a signed message that can be used to link to it on the web",
         "type": "object",
         "properties": {
           "signatureId": {
-            "title": "Signature ID",
-            "description": "The signature ID",
+            "title": "SignedMessage ID",
+            "description": "The SignedMessage ID",
             "type": "string"
           },
           "url": {
