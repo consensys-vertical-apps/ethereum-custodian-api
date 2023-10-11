@@ -16,7 +16,7 @@ exports.sourceNodes = async ({
 
   // eslint-disable-next-line node/no-unsupported-features/node-builtins
   const file = await fs.promises.readFile(
-    path.join(path.dirname, 'src', 'openrpc.json'),
+    path.join(__dirname, 'src', 'openrpc.json'),
   );
   const resultData = file.toString();
   // throws if fails
