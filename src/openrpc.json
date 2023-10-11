@@ -148,23 +148,22 @@
       "summary": "Requests that the custodian calculate Ethereum specific signature prefixed with \"\\x19Ethereum Signed Message:\\n\" + len(message)",
       "params": [
         {
-          "name": "address",
+          "name": "SignedMessageParameters",
           "required": true,
           "schema": {
-            "$ref": "#/components/schemas/address"
+            "$ref": "#/components/schemas/SignedMessageParameters"
           }
         },
         {
-          "name": "message",
+          "name": "SignedMessageMetadata",
           "required": true,
           "schema": {
-            "title": "message",
-            "$ref": "#/components/schemas/bytes"
+            "$ref": "#/components/schemas/SignedMessageMetadata"
           }
         }
       ],
       "result": {
-        "name": "Signed Message ID",
+        "name": "SignedMessage ID",
         "schema": {
           "title": "signedMessageId",
           "type": "string"
@@ -175,13 +174,17 @@
           "name": "Signing the string 'hello world'",
           "params": [
             {
-              "name": "custodianSignExampleAddress",
-              "value": "0xb2c77973279baaaf48c295145802695631d50c01"
+              "name": "custodianSignExampleAddressAndPayload",
+              "value": {
+                "address": "0xb2c77973279baaaf48c295145802695631d50c01",
+                "payload": "0x48656c6c6f20776f726c64" 
+              }
             },
             {
-              "name": "custodianSignExampleMessage",
-              "value": "0x48656c6c6f20776f726c64",
-              "description": "Hello world"
+              "name": "custodianSignExampleMetadata",
+              "chainId": "0x4",
+              "originUrl": "https://www.example.com",
+              "note": "personal_sign message"
             }
           ],
           "result": {
@@ -210,7 +213,7 @@
           }
         },
         {
-          "name": "encodingVersion",
+          "name": "version",
           "required": true,
           "schema": {
             "$ref": "#/components/schemas/EIP712EncodingVersion"
@@ -544,6 +547,50 @@
   ],
   "components": {
     "schemas": {
+      "SignedMessageParameters": {
+        "title": "Signed Message object",
+        "type": "object",
+        "allOf": [
+          {
+            "required": ["address", "payload"],
+            "properties": {
+              "address": {
+                "title": "From address",
+                "$ref": "#/components/schemas/address"
+              },
+              "payload": {
+                "title": "Message payload",
+                "$ref": "#/components/schemas/bytes"
+              }
+            }
+          }
+        ]
+      },
+      "SignedMessageMetadata": {
+        "title": "Signed Message Metadata",
+        "type": "object",
+        "allOf": [
+          {
+            "required": ["chainId", "originUrl"],
+            "properties": {
+              "chainId": {
+                "title": "Chain ID",
+                "$ref": "#/components/schemas/uint"
+              },
+              "originUrl": {
+                "title": "Origin URL",
+                "description": "The web page/dapp where the transaction originated",
+                "$ref": "#/components/schemas/uri"
+              },
+              "note": {
+                "title": "Note",
+                "description": "A note to be attached to the transaction which can be specified by the user",
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
       "address": {
         "title": "hex encoded address",
         "type": "string",
