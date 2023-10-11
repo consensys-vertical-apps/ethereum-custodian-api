@@ -4,16 +4,23 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 const fs = require('fs');
+const path = require('path');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
-
-// get OpenRPC Document at build time
-// eslint-disable-next-line
-const resultData = fs.readFileSync(`${__dirname}/src/openrpc.json`).toString();
 
 exports.sourceNodes = async ({
   actions: { createNode },
   createContentDigest,
 }) => {
+  // deref doc
+  // get OpenRPC Document at build time
+
+  // eslint-disable-next-line node/no-unsupported-features/node-builtins
+  const file = await fs.promises.readFile(
+    path.join(__dirname, 'src', 'openrpc.json'),
+  );
+  const resultData = file.toString();
+  // throws if fails
+  JSON.parse(resultData);
   // create node for build time openrpc document on the site
   createNode({
     openrpcDocument: resultData,
