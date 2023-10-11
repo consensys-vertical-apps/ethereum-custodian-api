@@ -1,20 +1,8 @@
-# MetaMask API Playground
+# Ethereum Custodian API
 
-This repo uses https://github.com/MetaMask/api-specs to provide a playground to interact with MetaMask.
+![OpenRPC](https://img.shields.io/badge/OpenRPC-1.2.4-blue)
+![Version](https://img.shields.io/badge/version-0.0.2-orange)
 
-## Developing
+This repository contains the OpenRPC documentation for the Ethereum Custodian API, which is designed to be used by MMI Custodians.
 
-Uses Gatsby.js. [Getting your development environment set up](https://www.gatsbyjs.com/docs/tutorial/part-0/).
-
-- Install node.js if you don't have it. Version 14.17.5
-- Install Gatsby if you don't have it:`npm i -g gatsby-cli`
-- Install yarn if you don't have it:`npm i -g yarn`
-- Install dependencies: `yarn setup`.
-- Start your development environment: `yarn run develop`.
-
-Once you have Gatsby installed, you should be able to `yarn run develop` and get going.
-
-If you have issues with the `sharp` module, one of these might help:
-- `npm rebuild --verbose sharp`
-- on OSX: `brew install vips`
-
+The API specification is based on the OpenRPC standard, version 1.2.4. To learn more about the OpenRPC standard, please visit the [official website](https://www.open-rpc.org/).
