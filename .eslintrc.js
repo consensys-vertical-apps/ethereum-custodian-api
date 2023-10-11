@@ -3,44 +3,44 @@ module.exports = {
 
   settings: {
     react: {
-      version: "detect"
-    }
+      version: 'detect',
+    },
   },
 
   parserOptions: {
-    sourceType: "module"
+    sourceType: 'module',
   },
 
-  extends: ["@metamask/eslint-config"],
+  extends: ['@metamask/eslint-config'],
 
   overrides: [
     {
-      files: ["*.ts"],
-      extends: ["@metamask/eslint-config-typescript"]
+      files: ['*.ts'],
+      extends: ['@metamask/eslint-config-typescript'],
     },
     {
-      files: ["*.js"],
+      files: ['*.js'],
       rules: {
-        "node/exports-style": "off"
+        'node/exports-style': 'off',
       },
-      extends: ["@metamask/eslint-config-nodejs"]
+      extends: ['@metamask/eslint-config-nodejs'],
     },
     {
-      files: ["gatsby-browser.js", "gatsby-ssr.js"],
+      files: ['gatsby-browser.js', 'gatsby-ssr.js'],
       parserOptions: {
-        sourceType: "module",
+        sourceType: 'module',
         ecmaFeatures: {
-          jsx: true
-        }
+          jsx: true,
+        },
       },
-      extends: ["plugin:react/recommended"]
+      extends: ['plugin:react/recommended'],
     },
 
     {
-      files: ["*.test.ts", "*.test.js"],
-      extends: ["@metamask/eslint-config-jest"]
-    }
+      files: ['*.test.ts', '*.test.js'],
+      extends: ['@metamask/eslint-config-jest'],
+    },
   ],
 
-  ignorePatterns: ["!.eslintrc.js", "dist/", "public/"]
+  ignorePatterns: ['!.eslintrc.js', 'dist/', 'public/'],
 };
