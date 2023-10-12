@@ -499,6 +499,110 @@
       ]
     },
     {
+      "name": "custodian_replaceTransaction",
+      "summary": "Replaces a transaction that has not been mined yet.",
+      "params": [
+        {
+          "name": "ReplaceTransactionParameters",
+          "required": true,
+          "schema": {
+            "$ref": "#/components/schemas/ReplaceTransactionParameters"
+          }
+        },
+        {
+          "name": "ReplaceTransactionMetadata",
+          "required": true,
+          "schema": {
+            "$ref": "#/components/schemas/ReplaceTransactionMetadata"
+          }
+        }
+      ],
+      "result": {
+        "name": "ReplaceTransaction",
+        "value": {
+          "name": "replaceTransactionResult",
+          "description": "The result of a replaced transaction",
+          "value": {
+            "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
+          }
+        }
+      },
+      "examples": [
+        {
+          "name": "custodianReplaceTransactionExample",
+          "params": [
+            {
+              "name": "custodianReplaceTransactionExampleParam",
+              "value": {
+                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+                "action": "speedUp"
+              }
+            },
+            {
+              "name": "custodianReplaceTransactionExampleMetadata",
+              "value": {
+                "gas": "0x5208",
+                "maxPriorityFeePerGas": "0x59682f0e",
+                "maxFeePerGas": "0x59682f0e"
+              }
+            }
+          ],
+          "result": {
+            "name": "custodianReplaceTransactionExampleResult",
+            "description": "",
+            "value": {
+              "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "custodian_getTransactionLink",
+      "summary": "Returns metadata about a transaction which can be used to link users somewhere they can affect its lifecycle",
+      "params": [
+        {
+          "name": "Transaction ID",
+          "required": true,
+          "schema": {
+            "title": "Transaction ID",
+            "type": "string"
+          }
+        }
+      ],
+      "result": {
+        "name": "TransactionLink",
+        "schema": {
+          "$ref": "#/components/schemas/TransactionLink"
+        }
+      },
+      "examples": [
+        {
+          "name": "custodianGetTransactionLinkExample",
+          "params": [
+            {
+              "name": "custodianGetTransactionLinkExampleeParam",
+              "value": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
+            }
+          ],
+          "result": {
+            "name": "custodianGetTransactionLinkExampleResult",
+            "description": "",
+            "value": {
+              "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+              "url": "https://example.com/transaction/ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+              "text": "Approve your transaction in the custodian interface",
+              "action": "Approve",
+              "ethereum": {
+                "accounts": ["0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826"],
+                "chainId": ["0x1"]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
       "name": "custodian_getSignedMessageLink",
       "summary": "Returns metadata about a signed message which can be used to link users somewhere they can affect its lifecycle",
       "params": [
@@ -632,6 +736,24 @@
               "note": {
                 "title": "Note",
                 "description": "A note to be attached to the transaction which can be specified by the user",
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "action": {
+        "title": "the replacement action",
+        "type": "string",
+        "oneOf": [
+          {
+            "properties": {
+              "cancel": {
+                "title": "cancel",
+                "type": "string"
+              },
+              "speedUp": {
+                "title": "speedUp",
                 "type": "string"
               }
             }
@@ -985,6 +1107,57 @@
           }
         }
       },
+      "TransactionLink": {
+        "name": "transactionLink",
+        "description": "Metadata about a transaction that can be used to link to it on the web",
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "title": "Transaction ID",
+            "description": "The transaction ID",
+            "type": "string"
+          },
+          "url": {
+            "title": "URL",
+            "type": "string",
+            "description": "The URL where the transaction can be found"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string",
+            "description": "Some text about what actions users can take"
+          },
+          "action": {
+            "title": "Action",
+            "type": "string",
+            "description": "The short text (verb) that should be used to describe the action"
+          },
+          "ethereum": {
+            "title": "Ethereum Metadata",
+            "type": "object",
+            "description": "Ethereum specific metadata",
+            "properties": {
+              "accounts": {
+                "title": "Accounts",
+                "description": "Any accounts (other than the wallet itself) that are involved in the transaction",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/address"
+                }
+              },
+              "chainIds": {
+                "title": "Chain IDs",
+                "description": "The chain IDs that are involved in the transaction",
+                "type": "array",
+                "items": {
+                  "title": "Chain ID",
+                  "$ref": "#/components/schemas/uint"
+                }
+              }
+            }
+          }
+        }
+      },
       "TransactionResult": {
         "name": "transactionResult",
         "description": "Returns a transaction or null",
@@ -1168,6 +1341,50 @@
         "type": "string",
         "description": "Keccak 256 Hash of the RLP encoding of a transaction",
         "$ref": "#/components/schemas/Keccak"
+      },
+      "ReplaceTransactionParameters": {
+        "type": "object",
+        "title": "Transaction object",
+        "allOf": [
+          {
+            "required": ["transactionId", "action"],
+            "properties": {
+              "transactionId": {
+                "title": "Transaction ID",
+                "description": "The transaction ID",
+                "type": "string"
+              },
+              "action": {
+                "title": "action",
+                "$ref": "#/components/schemas/action"
+              }
+            }
+          }
+        ]
+      },
+      "ReplaceTransactionMetadata": {
+        "title": "Replace Transaction Metadata",
+        "type": "object",
+        "allOf": [
+          {
+            "properties": {
+              "gas": {
+                "title": "gas fee",
+                "$ref": "#/components/schemas/uint"
+              },
+              "maxPriorityFeePerGas": {
+                "title": "max priority fee per gas",
+                "description": "Maximum fee per gas the sender is willing to pay to miners in wei",
+                "$ref": "#/components/schemas/uint"
+              },
+              "maxFeePerGas": {
+                "title": "max fee per gas",
+                "description": "The maximum total fee per gas the sender is willing to pay (includes the network / base fee and miner / priority fee) in wei",
+                "$ref": "#/components/schemas/uint"
+              }
+            }
+          }
+        ]
       }
     }
   }
