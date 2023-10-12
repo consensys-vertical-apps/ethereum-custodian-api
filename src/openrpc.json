@@ -105,10 +105,9 @@
         }
       ],
       "result": {
-        "name": "Transaction ID",
+        "name": "Transaction",
         "schema": {
-          "title": "Transaction ID",
-          "type": "string"
+          "$ref": "#/components/schemas/TransactionResult"
         }
       },
       "examples": [
@@ -132,13 +131,42 @@
               "value": {
                 "chainId": "0x4",
                 "originUrl": "https://www.example.com",
-                "note": "This is a note to trader"
+                "note": "This is a note to trader",
+                "transactionCategory" : "simpleTransfer",
+                "custodianPublishesTransaction" : true,
+                "rpcUrl" : "https://mainnet.infura.io/v3/12345"
               }
             }
           ],
           "result": {
             "name": "custodianCreateTransactionExampleResult",
-            "value": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
+            "value": {
+              "transaction" : {
+                "id": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+                "type": "0x2",
+                "from": "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
+                "to": "0xB8c77482e45F1F44dE1745F52C74426C631bDD52",
+                "value": "0x0",
+                "gas": "0x5208",
+                "gasPrice": "0x4A817C800",
+                "nonce": "0x1",
+                "data": "0x",
+                "hash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+                "status": {
+                    "finished": true,
+                    "submitted": true,
+                    "signed": true,
+                    "success": true,
+                    "displayText": "Mined"
+                },
+                "signedRawTransaction": "0xf86b018504a817c80082520894b8c77482e45f1f44de1745f52c74426c631bdd5280b844a9059cbb000000000000000000000000cd2a3d9f938e13cd947ec05abc7fe734df8dd826"
+              },
+              "metadata": {
+                "chainId": "0x4",
+                "custodianPublishesTransaction": true,
+                "rpcUrl": "https://mainnet.infura.io/v3/12345"
+              }
+            }
           }
         }
       ]
@@ -368,6 +396,22 @@
             "title": "Transaction ID",
             "type": "string"
           }
+        },
+        {
+          "name": "Custodian Publishes Transaction",
+          "required": true,
+          "schema": {
+            "title": "Custodian Publishes Transaction",
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "Signed Raw Transaction",
+          "required": true,
+          "schema": {
+            "title": "Signed Raw Transaction",
+            "type": "string"
+          }
         }
       ],
       "result": {
@@ -382,28 +426,39 @@
           "params": [
             {
               "name": "custodianGetTransactionByIdExampleParam",
-              "value": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
+              "value": {
+                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+                "custodianPublishesTransaction": true,
+                "signedRawTransaction": "0xf86b018504a817c80082520894b8c77482e45f1f44de1745f52c74426c631bdd5280b844a9059cbb000000000000000000000000cd2a3d9f938e13cd947ec05abc7fe734df8dd826"
+              }
             }
           ],
           "result": {
             "name": "custodianGetTransactionByIdExampleResult",
             "value": {
-              "id": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
-              "type": "0x2",
-              "from": "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
-              "to": "0xB8c77482e45F1F44dE1745F52C74426C631bDD52",
-              "value": "0x0",
-              "gas": "0x5208",
-              "gasPrice": "0x4A817C800",
-              "nonce": "0x1",
-              "data": "0x",
-              "hash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
-              "status": {
-                "finished": true,
-                "submitted": true,
-                "signed": true,
-                "success": true,
-                "displayText": "Mined"
+              "transaction" : {
+                "id": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+                "type": "0x2",
+                "from": "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
+                "to": "0xB8c77482e45F1F44dE1745F52C74426C631bDD52",
+                "value": "0x0",
+                "gas": "0x5208",
+                "gasPrice": "0x4A817C800",
+                "nonce": "0x1",
+                "data": "0x",
+                "hash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+                "status": {
+                  "finished": true,
+                  "submitted": true,
+                  "signed": true,
+                  "success": true,
+                  "displayText": "Mined"
+                },
+                "signedRawTransaction": "0xf86b018504a817c80082520894b8c77482e45f1f44de1745f52c74426c631bdd5280b844a9059cbb000000000000000000000000cd2a3d9f938e13cd947ec05abc7fe734df8dd826"
+              },
+              "metadata": {
+                "chainId": "0x4",
+                "custodianPublishesTransaction": true
               }
             }
           }
@@ -413,29 +468,40 @@
           "params": [
             {
               "name": "custodianGetTransactionByIdExampleParam",
-              "value": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
+              "value": {
+                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+                "custodianPublishesTransaction": true,
+                "signedRawTransaction": "0xf86b018504a817c80082520894b8c77482e45f1f44de1745f52c74426c631bdd5280b844a9059cbb000000000000000000000000cd2a3d9f938e13cd947ec05abc7fe734df8dd826"
+              }
             }
           ],
           "result": {
             "name": "custodianGetTransactionByIdExampleResult",
             "value": {
-              "id": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
-              "type": "0x2",
-              "from": "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
-              "to": "0xB8c77482e45F1F44dE1745F52C74426C631bDD52",
-              "value": "0x0",
-              "gas": "0x5208",
-              "gasPrice": "0x4A817C800",
-              "nonce": "0x1",
-              "data": "0x",
-              "hash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
-              "status": {
-                "finished": true,
-                "signed": true,
-                "success": false,
-                "submitted": true,
-                "displayText": "Failed",
-                "reason": "Transaction reverted"
+              "transaction" : {
+                "id": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+                "type": "0x2",
+                "from": "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
+                "to": "0xB8c77482e45F1F44dE1745F52C74426C631bDD52",
+                "value": "0x0",
+                "gas": "0x5208",
+                "gasPrice": "0x4A817C800",
+                "nonce": "0x1",
+                "data": "0x",
+                "hash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+                "status": {
+                  "finished": true,
+                  "signed": true,
+                  "success": false,
+                  "submitted": true,
+                  "displayText": "Failed",
+                  "reason": "Transaction reverted"
+                },
+                "signedRawTransaction": "0xf86b018504a817c80082520894b8c77482e45f1f44de1745f52c74426c631bdd5280b844a9059cbb000000000000000000000000cd2a3d9f938e13cd947ec05abc7fe734df8dd826"
+              },
+              "metadata": {
+                "chainId": "0x4",
+                "custodianPublishesTransaction": true
               }
             }
           }
@@ -445,29 +511,40 @@
           "params": [
             {
               "name": "custodianGetTransactionByIdExampleParam",
-              "value": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
+              "value": {
+                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+                "custodianPublishesTransaction": true,
+                "signedRawTransaction": "0xf86b018504a817c80082520894b8c77482e45f1f44de1745f52c74426c631bdd5280b844a9059cbb000000000000000000000000cd2a3d9f938e13cd947ec05abc7fe734df8dd826"
+              }
             }
           ],
           "result": {
             "name": "custodianGetTransactionByIdExampleResult",
             "value": {
-              "id": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
-              "type": "0x2",
-              "from": "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
-              "to": "0xB8c77482e45F1F44dE1745F52C74426C631bDD52",
-              "value": "0x0",
-              "gas": "0x5208",
-              "gasPrice": "0x4A817C800",
-              "nonce": "0x1",
-              "data": "0x",
-              "hash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
-              "status": {
-                "finished": true,
-                "signed": false,
-                "success": false,
-                "submitted": false,
-                "displayText": "Rejected",
-                "reason": "Transaction was rejected by user"
+              "transaction" : {
+                "id": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+                "type": "0x2",
+                "from": "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
+                "to": "0xB8c77482e45F1F44dE1745F52C74426C631bDD52",
+                "value": "0x0",
+                "gas": "0x5208",
+                "gasPrice": "0x4A817C800",
+                "nonce": "0x1",
+                "data": "0x",
+                "hash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+                "status": {
+                  "finished": true,
+                  "signed": false,
+                  "success": false,
+                  "submitted": false,
+                  "displayText": "Rejected",
+                  "reason": "Transaction was rejected by user"
+                },
+                "signedRawTransaction": "0xf86b018504a817c80082520894b8c77482e45f1f44de1745f52c74426c631bdd5280b844a9059cbb000000000000000000000000cd2a3d9f938e13cd947ec05abc7fe734df8dd826"
+              },
+              "metadata": {
+                "chainId": "0x4",
+                "custodianPublishesTransaction": true
               }
             }
           }
@@ -777,6 +854,10 @@
                 "description": "The transaction ID",
                 "type": "string"
               },
+              "chainId": {
+                "title": "Chain ID",
+                "$ref": "#/components/schemas/uint"
+              },
               "nonce": {
                 "title": "Nonce",
                 "description": "The nonce of the transaction",
@@ -810,6 +891,9 @@
           },
           {
             "$ref": "#/components/schemas/TransactionParameters"
+          },
+          {
+            "$ref": "#/components/schemas/TransactionMetadata"
           }
         ]
       },
@@ -1051,7 +1135,7 @@
         "title": "Transaction object",
         "allOf": [
           {
-            "required": ["gas", "value", "from", "to"],
+            "required": ["gas", "from"],
             "properties": {
               "type": {
                 "title": "Type or hardfork. 0x0 for Istanbul, 0x1 for Berlin, 0x2 for London",
@@ -1140,6 +1224,16 @@
               "note": {
                 "title": "Note",
                 "description": "A note to be attached to the transaction which can be specified by the user",
+                "type": "string"
+              },
+              "custodianPublishesTransaction": {
+                "title": "Custodian Publishes Transaction",
+                "description": "If the custodian should publish the transaction",
+                "type": "boolean"
+              },
+              "rpcUrl": {
+                "title": "RPC URL",
+                "description": "Wser's preferred RPC URL, and it should be the same as the RPC URL for the network corresponding to the Chain ID",
                 "type": "string"
               }
             }
