@@ -1135,7 +1135,7 @@
         "title": "Transaction object",
         "allOf": [
           {
-            "required": ["gas", "from"],
+            "required": ["gas", "from", "type"],
             "properties": {
               "type": {
                 "title": "Type or hardfork. 0x0 for Istanbul, 0x1 for Berlin, 0x2 for London",
