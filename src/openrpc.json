@@ -39,9 +39,41 @@
                     "name": "wallet-name",
                     "value": "My Ethereum Wallet"
                   }
-                ]
+                ],
+                "metadata": {
+                  "active": true,
+                  "deleted": false,
+                  "isContract": false
+               }
               }
             ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "custodian_listAccountsSigned",
+      "summary": "Returns a signed message containing the list of accounts",
+      "params": [],
+      "result": {
+        "name": "jwt",
+        "schema": {
+          "title": "jwt",
+          "type": "string",
+          "items": {
+            "$ref": "#/components/schemas/jwt"
+          }
+        }
+      },
+      "examples": [
+        {
+          "name": "Returning an account",
+          "params": [],
+          "result": {
+            "name": "custodianListAccountsSignedExampleResult",
+            "value": {
+              "jwt": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTYiLCJpc3MiOiJleGFtcGxlLmNvbSJ9.IlBfD4xmjpQiQCrkiIwIztEHrEH7e7RuswWPbIlJwUI"
+            }
           }
         }
       ]
@@ -808,6 +840,15 @@
                   "$ref": "#/components/schemas/Label"
                 }
               },
+              "metadata": {
+                "title": "metadata",
+                "type": "object",
+                "items": {
+                  "active": "boolean",
+                  "deleted": "boolean",
+                  "isContract": "boolean"
+                }
+             },
               "name": {
                 "title": "name",
                 "type": "string"
