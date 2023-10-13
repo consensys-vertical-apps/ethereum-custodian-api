@@ -396,22 +396,6 @@
             "title": "Transaction ID",
             "type": "string"
           }
-        },
-        {
-          "name": "Custodian Publishes Transaction",
-          "required": true,
-          "schema": {
-            "title": "Custodian Publishes Transaction",
-            "type": "boolean"
-          }
-        },
-        {
-          "name": "Signed Raw Transaction",
-          "required": true,
-          "schema": {
-            "title": "Signed Raw Transaction",
-            "type": "string"
-          }
         }
       ],
       "result": {
