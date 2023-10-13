@@ -137,9 +137,10 @@
         }
       ],
       "result": {
-        "name": "Transaction",
+        "name": "Transaction ID",
         "schema": {
-          "$ref": "#/components/schemas/TransactionResult"
+          "title": "Transaction ID",
+          "type": "string"
         }
       },
       "examples": [
@@ -172,33 +173,7 @@
           ],
           "result": {
             "name": "custodianCreateTransactionExampleResult",
-            "value": {
-              "transaction" : {
-                "id": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
-                "type": "0x2",
-                "from": "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
-                "to": "0xB8c77482e45F1F44dE1745F52C74426C631bDD52",
-                "value": "0x0",
-                "gas": "0x5208",
-                "gasPrice": "0x4A817C800",
-                "nonce": "0x1",
-                "data": "0x",
-                "hash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
-                "status": {
-                    "finished": true,
-                    "submitted": true,
-                    "signed": true,
-                    "success": true,
-                    "displayText": "Mined"
-                },
-                "signedRawTransaction": "0xf86b018504a817c80082520894b8c77482e45f1f44de1745f52c74426c631bdd5280b844a9059cbb000000000000000000000000cd2a3d9f938e13cd947ec05abc7fe734df8dd826"
-              },
-              "metadata": {
-                "chainId": "0x4",
-                "custodianPublishesTransaction": true,
-                "rpcUrl": "https://mainnet.infura.io/v3/12345"
-              }
-            }
+            "value": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
           }
         }
       ]
@@ -474,7 +449,9 @@
               },
               "metadata": {
                 "chainId": "0x4",
-                "custodianPublishesTransaction": true
+                "custodianPublishesTransaction": true,
+                "note": "This is a note to trader",
+                "rpcUrl" : "https://mainnet.infura.io/v3/12345"
               }
             }
           }
@@ -517,7 +494,9 @@
               },
               "metadata": {
                 "chainId": "0x4",
-                "custodianPublishesTransaction": true
+                "custodianPublishesTransaction": true,
+                "note": "This is a note to trader",
+                "rpcUrl" : "https://mainnet.infura.io/v3/12345"
               }
             }
           }
@@ -560,7 +539,9 @@
               },
               "metadata": {
                 "chainId": "0x4",
-                "custodianPublishesTransaction": true
+                "custodianPublishesTransaction": true,
+                "note": "This is a note to trader",
+                "rpcUrl" : "https://mainnet.infura.io/v3/12345"
               }
             }
           }
@@ -727,7 +708,7 @@
             "name": "custodianGetSignedMessageLinkExampleResult",
             "description": "",
             "value": {
-              "signatureId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+              "signedMessageId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
               "url": "https://example.com/signature/ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
               "text": "Approve your signature in the custodian interface",
               "action": "Approve",
@@ -1170,7 +1151,7 @@
         "description": "Metadata about a signed message that can be used to link to it on the web",
         "type": "object",
         "properties": {
-          "signatureId": {
+          "signedMessageId": {
             "title": "SignedMessage ID",
             "description": "The SignedMessage ID",
             "type": "string"
@@ -1488,20 +1469,43 @@
           {
             "properties": {
               "gas": {
-                "title": "gas fee",
-                "$ref": "#/components/schemas/uint"
-              },
-              "maxPriorityFeePerGas": {
-                "title": "max priority fee per gas",
-                "description": "Maximum fee per gas the sender is willing to pay to miners in wei",
-                "$ref": "#/components/schemas/uint"
-              },
-              "maxFeePerGas": {
-                "title": "max fee per gas",
-                "description": "The maximum total fee per gas the sender is willing to pay (includes the network / base fee and miner / priority fee) in wei",
+                "title": "Gas",
                 "$ref": "#/components/schemas/uint"
               }
             }
+          },
+          {
+            "oneOf": [
+              {
+                "title": "EIP-1559 fee market parameters",
+                "type": "object",
+                "description": "EIP-1559 dynamic fee transactions have two fee parameters.",
+                "properties": {
+                  "maxPriorityFeePerGas": {
+                    "title": "max priority fee per gas",
+                    "description": "Maximum fee per gas the sender is willing to pay to miners in wei",
+                    "$ref": "#/components/schemas/uint"
+                  },
+                  "maxFeePerGas": {
+                    "title": "max fee per gas",
+                    "description": "The maximum total fee per gas the sender is willing to pay (includes the network / base fee and miner / priority fee) in wei",
+                    "$ref": "#/components/schemas/uint"
+                  }
+                }
+              },
+              {
+                "title": "Legacy fee market parameters",
+                "type": "object",
+                "description": "Legacy transactions and EIP-2930 access list transaction include this parameter.",
+                "properties": {
+                  "gasPrice": {
+                    "title": "gas price",
+                    "description": "The gas price willing to be paid by the sender in wei",
+                    "$ref": "#/components/schemas/uint"
+                  }
+                }
+              }
+            ]
           }
         ]
       }
