@@ -418,9 +418,7 @@
             {
               "name": "custodianGetTransactionByIdExampleParam",
               "value": {
-                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
-                "custodianPublishesTransaction": true,
-                "signedRawTransaction": "0xf86b018504a817c80082520894b8c77482e45f1f44de1745f52c74426c631bdd5280b844a9059cbb000000000000000000000000cd2a3d9f938e13cd947ec05abc7fe734df8dd826"
+                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
               }
             }
           ],
@@ -462,9 +460,7 @@
             {
               "name": "custodianGetTransactionByIdExampleParam",
               "value": {
-                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
-                "custodianPublishesTransaction": true,
-                "signedRawTransaction": "0xf86b018504a817c80082520894b8c77482e45f1f44de1745f52c74426c631bdd5280b844a9059cbb000000000000000000000000cd2a3d9f938e13cd947ec05abc7fe734df8dd826"
+                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
               }
             }
           ],
@@ -507,9 +503,7 @@
             {
               "name": "custodianGetTransactionByIdExampleParam",
               "value": {
-                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
-                "custodianPublishesTransaction": true,
-                "signedRawTransaction": "0xf86b018504a817c80082520894b8c77482e45f1f44de1745f52c74426c631bdd5280b844a9059cbb000000000000000000000000cd2a3d9f938e13cd947ec05abc7fe734df8dd826"
+                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
               }
             }
           ],
