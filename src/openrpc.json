@@ -418,7 +418,9 @@
             {
               "name": "custodianGetTransactionByIdExampleParam",
               "value": {
-                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
+                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+                "custodianPublishesTransaction": true,
+                "signedRawTransaction": "0xf86b018504a817c80082520894b8c77482e45f1f44de1745f52c74426c631bdd5280b844a9059cbb000000000000000000000000cd2a3d9f938e13cd947ec05abc7fe734df8dd826"
               }
             }
           ],
@@ -460,7 +462,9 @@
             {
               "name": "custodianGetTransactionByIdExampleParam",
               "value": {
-                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
+                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+                "custodianPublishesTransaction": true,
+                "signedRawTransaction": "0xf86b018504a817c80082520894b8c77482e45f1f44de1745f52c74426c631bdd5280b844a9059cbb000000000000000000000000cd2a3d9f938e13cd947ec05abc7fe734df8dd826"
               }
             }
           ],
@@ -503,7 +507,9 @@
             {
               "name": "custodianGetTransactionByIdExampleParam",
               "value": {
-                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
+                "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
+                "custodianPublishesTransaction": true,
+                "signedRawTransaction": "0xf86b018504a817c80082520894b8c77482e45f1f44de1745f52c74426c631bdd5280b844a9059cbb000000000000000000000000cd2a3d9f938e13cd947ec05abc7fe734df8dd826"
               }
             }
           ],
@@ -587,12 +593,8 @@
       ],
       "result": {
         "name": "ReplaceTransaction",
-        "value": {
-          "name": "replaceTransactionResult",
-          "description": "The result of a replaced transaction",
-          "value": {
-            "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
-          }
+        "schema": {
+          "$ref": "#/components/schemas/ReplaceTransaction"
         }
       },
       "examples": [
@@ -723,14 +725,14 @@
         "type": "object",
         "allOf": [
           {
-            "required": ["address", "payload"],
+            "required": ["address", "message"],
             "properties": {
               "address": {
                 "title": "From address",
                 "$ref": "#/components/schemas/address"
               },
-              "payload": {
-                "title": "Message payload",
+              "message": {
+                "title": "Message message",
                 "$ref": "#/components/schemas/bytes"
               }
             }
@@ -742,21 +744,41 @@
         "type": "object",
         "allOf": [
           {
-            "required": ["chainId", "originUrl"],
             "properties": {
               "chainId": {
                 "title": "Chain ID",
-                "$ref": "#/components/schemas/uint"
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/uint"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Null"
+                  }
+                ]
               },
               "originUrl": {
                 "title": "Origin URL",
                 "description": "The web page/dapp where the transaction originated",
-                "$ref": "#/components/schemas/uri"
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/uri"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Null"
+                  }
+                ]
               },
               "note": {
                 "title": "Note",
                 "description": "A note to be attached to the transaction which can be specified by the user",
-                "type": "string"
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/String"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Null"
+                  }
+                ]
               }
             }
           }
@@ -767,18 +789,18 @@
         "type": "object",
         "allOf": [
           {
-            "required": ["address", "payload", "version"],
+            "required": ["address", "data", "version"],
             "properties": {
               "address": {
                 "title": "From address",
                 "$ref": "#/components/schemas/address"
               },
-              "payload": {
-                "title": "Message payload",
-                "$ref": "#/components/schemas/bytes"
+              "data": {
+                "title": "Message data",
+                "$ref": "#/components/schemas/TypedData"
               },
               "version": {
-                "title": "Message payload",
+                "title": "Message version",
                 "$ref": "#/components/schemas/EIP712EncodingVersion"
               }
             }
@@ -790,21 +812,41 @@
         "type": "object",
         "allOf": [
           {
-            "required": ["chainId", "originUrl"],
             "properties": {
               "chainId": {
                 "title": "Chain ID",
-                "$ref": "#/components/schemas/uint"
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/uint"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Null"
+                  }
+                ]
               },
               "originUrl": {
                 "title": "Origin URL",
                 "description": "The web page/dapp where the transaction originated",
-                "$ref": "#/components/schemas/uri"
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/uri"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Null"
+                  }
+                ]
               },
               "note": {
                 "title": "Note",
                 "description": "A note to be attached to the transaction which can be specified by the user",
-                "type": "string"
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/String"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Null"
+                  }
+                ]
               }
             }
           }
@@ -1019,6 +1061,22 @@
           }
         ]
       },
+      "ReplaceTransaction": {
+        "type": "string",
+        "title": "replaceTransactionResult",
+        "description": "The result of a replaced transaction",
+        "allOf": [
+          {
+            "properties": {
+              "transactionId": {
+              "title": "Transaction ID",
+              "description": "The transaction ID",
+              "type": "string"
+            }
+           }
+          }
+        ]
+      },
       "CustomerProof": {
         "type": "object",
         "title": "Customer proof object",
@@ -1045,6 +1103,11 @@
         "title": "null",
         "type": "null",
         "description": "Null"
+      },
+      "String": {
+        "title": "string",
+        "type": "string",
+        "description": "string"
       },
       "EIP712EncodingVersion": {
         "title": "EIP712EncodingVersion",
