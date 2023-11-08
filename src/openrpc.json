@@ -72,7 +72,7 @@
           "result": {
             "name": "custodianListAccountsSignedExampleResult",
             "value": {
-              "jwt": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTYiLCJpc3MiOiJleGFtcGxlLmNvbSJ9.IlBfD4xmjpQiQCrkiIwIztEHrEH7e7RuswWPbIlJwUI"
+              "jwt": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJuZXB0dW5lLWN1c3RvZHkuZGV2Lm1ldGFtYXNrLWluc3RpdHV0aW9uYWwuaW8iLCJleHAiOjE2OTk1NDg0NTg4MjQsInN1YiI6IjEyMzQ1Njc4LTEyMzQtNTY3OC0xMjM0LTU2NzgxMjM0NTY3OCIsInBheWxvYWQiOnsiY3VzdG9tZXJJZCI6InRlc3QtY3VzdG9tZXIiLCJjdXN0b21lck5hbWUiOiJ0ZXN0LWN1c3RvbWVyLW5hbWUiLCJhY2NvdW50cyI6W3siYWRkcmVzcyI6IjB4YjJjNzc5NzMyNzliYWFhZjQ4YzI5NTE0NTgwMjY5NTYzMWQ1MGMwMSIsIm5hbWUiOiJDdXN0b2R5IEFjY291bnQgQSJ9LHsiYWRkcmVzcyI6IjB4MDMzZTI3MGMwOGMzZjI5N2Y5OTY2MGY5NThkNWY2MTUyMDdjMWFkZiIsIm5hbWUiOiJDdXN0b2R5IEFjY291bnQgQiJ9LHsiYWRkcmVzcyI6IjB4MTg0ZDZlODExY2U3NjVlNjQ0YTY0OGM4NjhmOWU0N2RlOWZmMDdkMCIsIm5hbWUiOiJDdXN0b2R5IEFjY291bnQgQyJ9LHsiYWRkcmVzcyI6IjB4MzY3ZGFjYWYyNmNjMTM4MWYzMTkxMTY3NmJhNDAwODg5MzhhYTY3NyIsIm5hbWUiOiJDdXN0b2R5IEFjY291bnQgRCJ9LHsiYWRkcmVzcyI6IjB4OGIyZDgyMjBlM2NmZGU5YmU2ODFhNWYwYjNmNmIzMjRjMDAzYjNhZCIsIm5hbWUiOiJDdXN0b2R5IEFjY291bnQgRSJ9LHsiYWRkcmVzcyI6IjB4NTgxODNkNTIwY2Y1M2EyYWFjMWIwMmFhMTFkMWMyMjY0NTNlMTc0NSIsIm5hbWUiOiJDdXN0b2R5IEFjY291bnQgRiJ9LHsiYWRkcmVzcyI6IjB4ZTdiNzY0YWY5ODVlOWQ3MzkwYWEyMTYyOWY2M2MwZjgwYWY2ZGJjOSIsIm5hbWUiOiJDdXN0b2R5IEFjY291bnQgRyJ9LHsiYWRkcmVzcyI6IjB4YmY1OWNiZmIzYTRkZjk5MzgwYjI3M2E2ODVkYjVmMzI0ODMzM2JhYiIsIm5hbWUiOiJDdXN0b2R5IEFjY291bnQgSCJ9LHsiYWRkcmVzcyI6IjB4YzQzZjY2MjAxNWFjM2JkZWY2NzM0NDc2OTQ1MWU1ZTE3NDQ2OGEyZiIsIm5hbWUiOiJDdXN0b2R5IEFjY291bnQgSSJ9LHsiYWRkcmVzcyI6IjB4ODQ1N2YzY2FhZmMyOTVkZDlhMzU0MTE3NmU2NjI4MzNjZjRkODZlYSIsIm5hbWUiOiJDdXN0b2R5IEFjY291bnQgSiJ9XX0sImlhdCI6MTY5OTQ2MjA1OH0.ELFCFU2ZQUlBeeKxn3drKwBqzZX4KJXy_t-XjyLjgJeKCyrgPleNBmd1-S6nMyUR2LolWL7cTZN0DUhyZAbd054zraXiWWwIJfM58bjo6ZFidm3RtUJ8VEfk59kw9g4dK8efr_oKta9ItksanqIJkTx2LykokcQ46jE9GWnFfc1NVvnuxvMq3oGI3czOxOhq6HrzIG5Dx7rylJKbpXdNXlrLpuw-1hNC3AHY3EB3hT_5ToPZ8X5omlru8pr0Fy6g-cnbUKt3k-37MNZ_vvTeeVEFpKxUb52uEM2g2tJd6oRGmJp1jzto23ysfpJEyb3MX0EJrQ2dUFNJoNKojzRsX"
             }
           }
         }
@@ -645,7 +645,7 @@
           "name": "custodianGetTransactionLinkExample",
           "params": [
             {
-              "name": "custodianGetTransactionLinkExampleeParam",
+              "name": "custodianGetTransactionLinkExampleParam",
               "value": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54"
             }
           ],
@@ -656,6 +656,7 @@
               "transactionId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
               "url": "https://example.com/transaction/ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
               "text": "Approve your transaction in the custodian interface",
+              "showLink": true,
               "action": "Approve",
               "ethereum": {
                 "accounts": ["0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826"],
@@ -701,6 +702,7 @@
               "signedMessageId": "ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
               "url": "https://example.com/signature/ef8cb7af-1a00-4687-9f82-1f1c82fbef54",
               "text": "Approve your signature in the custodian interface",
+              "showLink": true,
               "action": "Approve",
               "ethereum": {
                 "accounts": ["0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826"],
@@ -1222,6 +1224,11 @@
             "type": "string",
             "description": "The short text (verb) that should be used to describe the action"
           },
+          "showLink" : {
+            "title" : "Show link",
+            "type" : "boolean",
+            "description" : "Whether the link should be shown to the user"
+          },
           "ethereum": {
             "title": "Ethereum Metadata",
             "type": "object",
@@ -1272,6 +1279,11 @@
             "title": "Action",
             "type": "string",
             "description": "The short text (verb) that should be used to describe the action"
+          },
+          "showLink" : {
+            "title" : "Show link",
+            "type" : "boolean",
+            "description" : "Whether the link should be shown to the user"
           },
           "ethereum": {
             "title": "Ethereum Metadata",
