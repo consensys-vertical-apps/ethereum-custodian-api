@@ -265,7 +265,7 @@
               "name": "custodianSignTypedDataExampleAddress",
               "value": {
                 "address": "0xb2c77973279baaaf48c295145802695631d50c01",
-                "payload": {
+                "data": {
                   "types": {
                     "EIP712Domain": [
                       {
